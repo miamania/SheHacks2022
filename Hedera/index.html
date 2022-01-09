@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeJAM</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js"></script>
+
+</head>
+<body>
+    <h1>Test</h1>
+    <input type="text" id="name" placeholder="Enter your full name">
+    <button id="send"> Create Account</button>
+
+    <script type="text/javascript" src="HederaExamples.js" ></script>
+    <script src="config.js"></script>
+
+    <script>
+        let button = document.getElementById("button");
+        button.addEventListener("click", function () {
+
+            // get the values and execute code
+            let name = document.getElementById("name").value;
+            if (name == "") {
+                alert("Please enter the field");
+            }
+            else {
+                var data = { 
+                    name: name, 
+                    id: main()
+                }
+
+                //save to firebase
+                var database = firebase.database(); //gets the database
+                var ref = database.ref("named");
+                // push to database
+                ref.push(data);
+            }
+        })
+    </script>
+
+</body>
+</html>
